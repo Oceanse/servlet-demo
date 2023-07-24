@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 
 
 /**
- * chain(链): request--->AuthenFilter--->LogFilter--->Authen_Log_FiterDemo
  * http://localhost:8080/ServletDemo_war_exploded/authen_log?name=ocean
  */
 @WebServlet("/authen_log")

@@ -13,10 +13,11 @@ import java.sql.*;
 
 /*
 
-  docker run -d -p 3306:3306--name oceansql -e MYSQL_ROOT_PASSWORD=123123 mysql:5.7
-  tomcat/lib 下添加： mysql-connector-java-5.1.39-bin.jar
+  docker run -d -p 3306:3306--name oceansql -e MYSQL_ROOT_PASSWORD=123123 mysql:8.0.31
+  需要添加mysql 的jdbc驱动包到classpath中，因此可以把mysql-connector-java-8.0.28.jar在
+  添加到~/apache-tomcat-9.0.74/lib, 把~/apache-tomcat-9.0.74/lib 添加到classpath
 
- RUNOOB 数据库，并创建 websites 数据表：
+  创建RUNOOB 数据库，并创建 websites 数据表：
   CREATE TABLE `websites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` char(20) NOT NULL DEFAULT '' COMMENT '站点名称',
@@ -40,8 +41,8 @@ INSERT INTO `websites` VALUES ('1', 'Google', 'https://www.google.cm/', '1', 'US
 @WebServlet("/DatabaseAccess")
 public class DatabaseAccess extends HttpServlet {
     // JDBC 驱动名及数据库 URL
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://192.168.56.115:3306/RUNOOB";
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://172.16.12.128:3306/RUNOOB";
 
     // 数据库的用户名与密码，需要根据自己的设置
     static final String USER = "root";
@@ -70,7 +71,7 @@ public class DatabaseAccess extends HttpServlet {
                 "<h1 align=\"center\">" + title + "</h1>\n");
         try {
             // 注册 JDBC 驱动器
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(JDBC_DRIVER);
 
             // 打开一个连接
             conn = DriverManager.getConnection(DB_URL, USER, PASS);

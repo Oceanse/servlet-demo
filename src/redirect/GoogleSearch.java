@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * http://localhost:8080/ServletDemo_war_exploded/search?keyword=xxx
+ * http://localhost:8080/servlet_demo_war_exploded/search?keyword=xxx
  * In this example, we are using sendRedirect method to send request to google server with the request data.
  */
 @WebServlet("/search")
@@ -17,6 +17,7 @@ public class GoogleSearch extends HttpServlet {
             throws ServletException, IOException {
 
         String name=request.getParameter("keyword");
-        response.sendRedirect("https://www.google.co.in/#q="+name);
+        //response.sendRedirect("https://www.google.co.in/#q="+name);
+        response.sendRedirect("https://www.baidu.com/s?wd="+name);
     }
 }

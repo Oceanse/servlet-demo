@@ -1,19 +1,24 @@
 package webervlet_annotation;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 /**
  * 浏览器访问路径配置可以使用下面注解@WebServlet替换web.xml
- * http://localhost:8080/ServletDemo_war_exploded/HelloForm?name=cainiaojiaocheng&url=www.runoob.com
+ * 下面案例使得一个servlet可以对应很多的请求地址，解决了一个url对应一个Servlet导致的类爆炸的问题
+ * http://localhost:8080/ServletDemo_war_exploded/helloWebServlet
  */
-@WebServlet("/Hello")
+@WebServlet(name = "annotationServlet",
+        urlPatterns = {"/helloWebServlet", "/hiWebServlet"},
+        loadOnStartup = 1,
+        initParams = {@WebInitParam(name = "department", value = "dev"), @WebInitParam(name = "role", value = "senior")})
+
 public class WebServletDemo extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -23,26 +28,23 @@ public class WebServletDemo extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 设置响应内容类型
-        response.setContentType("text/html;charset=UTF-8");
+        String servletPath = request.getServletPath();
+        response.addHeader("Access-Control-Allow-Origin", "*");//前端项目可以跨域访问
+        if("/helloWebServlet".equals(servletPath)){
+            hello(response);
+        }else if("/hiWebServlet".equals(servletPath)){
+            hi(response);
+        }else {
+            response.getWriter().println("wrong url");
+        }
+    }
 
-        PrintWriter out = response.getWriter();
-        String title = "使用 GET 方法读取表单数据";
-        // 处理中文
-        String name =request.getParameter("name");
-        String docType = "<!DOCTYPE html> \n";
-        out.println(docType +
-                "<html>\n" +
-                "<head><title>" + title + "</title></head>\n" +
-                "<body bgcolor=\"#f0f0f0\">\n" +
-                "<h1 align=\"center\">" + title + "</h1>\n" +
-                "<ul>\n" +
-                "  <li><b>站点名</b>："
-                + name + "\n" +
-                "  <li><b>网址</b>："
-                + request.getParameter("url") + "\n" +
-                "</ul>\n" +
-                "</body></html>");
+    public void hello(HttpServletResponse response) throws IOException {
+        response.getWriter().println("hello");
+    }
+
+    public void hi(HttpServletResponse response) throws IOException {
+        response.getWriter().println("hi");
     }
 
     // 处理 POST 方法请求的方法

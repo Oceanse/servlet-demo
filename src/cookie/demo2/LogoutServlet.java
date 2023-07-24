@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * http://localhost:8080/ServletDemo_war_exploded/logout
- * 清除缓存
+ * 清除指定缓存
  */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
@@ -21,7 +21,7 @@ public class LogoutServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-        Cookie ck = new Cookie("name", "");
+        Cookie ck = new Cookie("username", "");
         ck.setMaxAge(0);
         response.addCookie(ck);
 

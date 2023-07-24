@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -81,7 +80,7 @@ public class HelloServlet extends HttpServlet {
         String charSet = servletConfig.getInitParameter("charSet");
         out.write("<h1> " + charSet + " </h1>");
         out.write("你好啊");
-        System.out.println("doPost is called");
+        System.out.println("doPost in HelloServlet is called");
     }
 
 
@@ -100,7 +99,7 @@ public class HelloServlet extends HttpServlet {
         //这里也对响应内容的编码方式进行了设置，客户端会利用改编码方案进行解码，若设置为utf-8, 结果就是out.print可以打印中文
         response.setContentType("text/html;charset=UTF-8");
 
-        // 输出文本
+        //向页面输出响应信息
         PrintWriter out = response.getWriter();
         out.write("<h1> " + message + " </h1>");
 
@@ -109,11 +108,11 @@ public class HelloServlet extends HttpServlet {
         out.write("<h1> " + name + " </h1>");
         out.write("<h1> " + passwd + " </h1>");
         out.write("你好啊");
-        System.out.println("doGet is called");
+        System.out.println("doGet in HelloServlet is called");
     }
 
     @Override
     public void destroy() {
-        System.out.println("destroy is called");
+        System.out.println("HelloServlet destroy is called");
     }
 }

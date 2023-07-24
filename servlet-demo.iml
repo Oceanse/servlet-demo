@@ -25,11 +25,13 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://C:/Program Files/apache-tomcat-8.5.78/lib" />
+          <root url="file://$USER_HOME$/app/apache-tomcat-9.0.74/lib" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://C:/Program Files/apache-tomcat-8.5.78/lib" recursive="false" />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/app/apache-tomcat-9.0.74/lib/servlet-api.jar!/" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/app/apache-tomcat-9.0.74/lib" recursive="false" />
       </library>
     </orderEntry>
   </component>
