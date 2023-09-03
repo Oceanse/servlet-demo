@@ -1,3 +1,5 @@
+package refresh;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -6,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/PageHitCounter")
+@WebServlet("/refresh.PageHitCounter")
 public class PageHitCounter extends HttpServlet {
     private int hitCount;
 

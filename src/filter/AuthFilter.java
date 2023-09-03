@@ -32,7 +32,7 @@ public class AuthFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
 
         String filterName = config.getInitParameter("filter-name"); // 获取web.xml初始化参数
-        System.out.println("init() in AuthenFilter class is called");
+        System.out.println("init() in AuthFilter class is called");
         System.out.println("filterName: " + filterName);  // 输出初始化参数
     }
 

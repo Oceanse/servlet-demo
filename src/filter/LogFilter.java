@@ -20,6 +20,7 @@ public class LogFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         servletResponse.setContentType("text/html;charset=UTF-8");
         System.out.println("I am called in LogFilter.doFilter before target method of the HelloServlet class ");
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         StringBuffer requestURL = request.getRequestURL();
         String contextPath = request.getContextPath();
@@ -29,6 +30,7 @@ public class LogFilter implements Filter {
         System.out.println("servletPath = " + servletPath);
         //放行request/response到链的下一个实体，比如Filter或者Servlet, 若注释掉filterChain.doFilter， request/response到此结束
         filterChain.doFilter(servletRequest, servletResponse);
+
         System.out.println("I am called in LogFilter.doFilter after target method of the HelloServlet class ");
     }
 

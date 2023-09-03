@@ -37,30 +37,27 @@
     </filter-mapping>
 
 
-    <servlet>
-        <servlet-name>Hello</servlet-name>
-        <servlet-class>HelloServlet</servlet-class>
-        <!--load-on-startup 元素标记容器是否应该在启动的时候加载这个servlet，实例化并调用其init()方法。
-        当值为0或者大于0时，表示容器在应用启动时就加载并初始化这个servlet，并调用其init()方法；
-        正数的值越小，该servlet的优先级越高，应用启动时就越先加载。
-        如果该元素不存在或者这个数为负时，则容器会当该Servlet被请求时，再加载初始化
-        -->
-        <init-param>
-            <param-name>charSet</param-name>
-            <param-value>utf-8</param-value>
-        </init-param>
 
+    <servlet>
+        <servlet-name>helloServlet</servlet-name>
+        <servlet-class>HelloServlet</servlet-class>
+        <init-param>
+            <param-name>chineseName</param-name>
+            <param-value>潘海阳</param-value>
+        </init-param>
+        <!-- 当值为0或者大于0时，表示容器在应用启动时就加载并初始化这个servlet，并调用其init()方法；正数的值越小，该servlet的优先级越高
+            如果该元素不存在或者这个数为负时，则容器会当该Servlet被请求时，再加载初始化-->
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Hello</servlet-name>
-        <url-pattern>/demo</url-pattern><!--这里的/代表项目上下文： http://localhost:8080/ServletDemo_war_exploded/-->
+        <servlet-name>helloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern><!--这里的/代表项目上下文： http://localhost:8080/ServletDemo_war_exploded/ -->
     </servlet-mapping>
 
     <!--设置session的过期时间，以分钟为单位，该元素值必须为整数，元素的值为零或负数，表示 Session 永远不会过期-->
     <session-config>
-        <session-timeout>-1</session-timeout>
+        <session-timeout>10</session-timeout>
     </session-config>
 
     <welcome-file-list>

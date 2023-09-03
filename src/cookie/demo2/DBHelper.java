@@ -24,7 +24,7 @@ public class DBHelper {
 
     static{
         try {
-            Class.forName(driver);//得到DriverManager，在下面建立连接时使用
+            Class.forName(driver);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

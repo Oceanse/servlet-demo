@@ -39,15 +39,14 @@ public class AddCookie extends HttpServlet{
 
             //设置缓存的有效路径，也就是浏览器在有效路径下访问服务器才会携带该缓存
             //request.getContextPath()=/ServletDemo_war_exploded 后面只要访问/ServletDemo_war_exploded或者其子路径就会带上ck和ck2或者说只要访问/ServletDemo_war_exploded下的资源就会会带上ck和ck2
-            //默认情况下：假设当前生成cookie的servlet访问路径是 http://localhost:8080/a/b,那么有效路径是http://localhost:8080/a及其子路径
+            //如果不设置缓存有效路径，就采用默认有效路径：假设当前生成cookie的servlet访问路径是 http://localhost:8080/a/b,那么有效路径是http://localhost:8080/a及其子路径
             ck.setPath(request.getContextPath());
             ck2.setPath(request.getContextPath());
 
-            //默认情况下，没有设置Cookie的有效时长，该Cookie被默认保存在浏览器的运行内存当中，只要浏览器不关闭Cookie存在，只要关闭浏览器Cookie消失
+            //默认情况下，没有设置Cookie的有效时长（以秒为单位），该Cookie被默认保存在浏览器的运行内存当中，只要浏览器不关闭Cookie存在，只要关闭浏览器Cookie消失
             //我们可以通过设置Cookie的有效时长(大于0)，以保证Cookie保存在硬盘文件当中
-            //设置 cookie 过期的时间（以秒为单位）
             //如果有效时间 >0，则该Cookie对象发送给浏览器之后浏览器将其保存到硬盘文件中。
-            //如果有效时间 <0，则该Cookie对象也是被保存在浏览器缓存中，待浏览器关闭Cookie消失。
+            //如果有效时间 <0，则该Cookie对象也是被保存在浏览器内存中，待浏览器关闭Cookie消失。
             //如果有效时间 =0，表示删除该Cookie。
             //默认为-1
             //这路cookie有效期60s, 即使关闭浏览器，60s之内重新打开浏览器重新发送请求，在有效路径下浏览器依然可以携带这个cookie访问服务器

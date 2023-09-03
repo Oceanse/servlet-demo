@@ -9,31 +9,50 @@
 <html>
   <head>
     <title>Hello</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      form {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
   </head>
   <body>
-  <h1>你看到的是index.jsp</h1>
-
-  <p>index.jsp是整个工程的首页，http://服务器的IP地址:tomcat端口号/项目工程名访问的就是index.jsp</p>
-
-
-  GET请求：点击提交按钮后访问的url是http://localhost:8080/MyServlet_war_exploded/demo?name=xxx&passwd=123<br/><br/>
-  POST请求：点击提交按钮后访问的url是http://localhost:8080/MyServlet_war_exploded/demo<br/><br/>
-  所以表单包含密码等敏感数据时候建议POST提交<br/><br/>
-
-
-  action：用来标识将表单交给谁去处理<br/>
-          1.以"/"开头的表示绝对地址，即web根目录，比如你用tomcat服务器，那么就是指webapp目录了
-            也就是http://localhost:8080。 所以action以/开始时候必须要带上项目名，后面再加上servlet的url-pattern
-            所以下面可以这样写： action="/ServletDemo_war_exploded/demo"， 对应的url就是http://localhost:8080/MyServlet_war_exploded/demo<br/>
-          2. 不以"/"开头的表示的是相对地址，即相对于当前这个页面的地址,当前页面地址是http://localhost:8080/MyServlet_war_exploded。
-             action="demo"请求的url就是http://localhost:8080/MyServlet_war_exploded/demo
-  <form action="demo" method="POST">
-    name:<br/>
-    <input type="text" name="name">  <br/>
-
-    passwd:<br/>
-    <input type="text" name="passwd" value="123">
-    <br><br>
+  <h1>欢迎来到Servlet</h1>
+  <form action="${pageContext.request.contextPath}/hello" method="POST">
+    name: <input type="text" name="name" value="ocean">
     <input type="submit" value="Submit">
   </form>
   </body>

@@ -35,7 +35,7 @@ public class ProfileServlet extends HttpServlet {
 
             //如果缓存中没有username或者password，需要重新登陆
             if (username == null || password == null) {
-                out.print("<font style='color:red;'>Authenticate failed and please login !</font>");
+                out.print("<font style='   color:red;'>Authenticate failed and please login !</font>");
                 request.getRequestDispatcher("/cookie/demo2/login.html").include(request, response);
                 return;
             }

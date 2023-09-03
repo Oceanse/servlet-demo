@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 
         // 用户名和密码分别为：admin , 123456， 生产环境中这里应该是查询数据库，来判断用户名密码是否正确
         if (DAO.checkLogin(username, password)) {
+            System.out.println(username+" "+password);
             Cookie usernameCookie=new Cookie("username",username);
             Cookie passwdCookie=new Cookie("password",password);
 

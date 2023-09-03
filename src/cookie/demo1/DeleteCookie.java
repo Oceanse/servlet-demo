@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 
 /**
  * 清除指定缓存
+ * cookie中会存在很多键值对，代表不同的缓存比如：cookie{username=1,password=2,jsessionid=3}
+ * 清除缓存只是清除清除一部分键值对
+ *
  */
 @WebServlet("/deleteCookie")// /这里的/是应用上下文路径
 public class DeleteCookie extends HttpServlet {

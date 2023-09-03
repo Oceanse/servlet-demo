@@ -45,16 +45,14 @@ public class LoginServlet extends HttpServlet {
 
         // 用户输入的密码是否为：mypd
         if (passwd.equals("mypd") && name.equals("admin")) {
-
-            //  /welcome 是要转发资源对应的url-pattern, “/”表示应用程序(项目)的路径。
             RequestDispatcher rd = request.getRequestDispatcher("/welcome");
-            rd.forward(request, response);
+            rd.forward(request, response);//forward转发
             System.out.println("Username is : "+name);
             out.println("Username is : "+name);
         } else {
             out.print("Sorry UserName or Password Error!");
             //登录失败则把转发后的servlet/html响应包含在第一个servlet的响应中
-            RequestDispatcher rd = request.getRequestDispatcher("/requestdispatcher/login.html");//“/”表示应用程序(项目)的路径。
+            RequestDispatcher rd = request.getRequestDispatcher("/requestdispatcher/login.html");
             rd.include(request, response);//include 是把第二个servlet/html的响应包含到当前servlet的响应中，然后返回给客户端
         }
     }
